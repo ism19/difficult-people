@@ -11,6 +11,18 @@ function App() {
   const [role, setRole] = useState(true) // 1 for user, 0 for AI
   const [selected, setSelected] = useState(null)
   const [conversations, setConversations] = useState([])
+  const [untitledCount, setUntitledCount] = useState(0)
+
+  function NewConversation() {
+    const newConversation = {
+      id: Date.now(),
+      name: untitledCount === 0 ? "Untitled" : `Untitled ${untitledCount}`,
+      messages: []
+    }
+    setUntitledCount(untitledCount + 1)
+    setConversations(conversations => [...conversations, newConversation])
+    setSelected(newConversation)
+  }
 }
 
 export default App;

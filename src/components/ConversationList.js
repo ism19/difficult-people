@@ -3,7 +3,7 @@ export default function ConversationList({conversations, selected, setSelected, 
         <div className="conversation-list-panel">
             <button 
                 className="new-conversation-button" 
-                onClick={() => {NewConversation}}
+                onClick={() => NewConversation}
             ><img src="new-chat-icon"/></button>
             <ul className="conversation-list">
                 {conversations.map(conv => (
