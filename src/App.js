@@ -8,7 +8,7 @@ import MessageBubble from './components/MessageBubble';
 
 function App() {
   const [messageIn, setMessageIn] = useState("")
-
+  const [role, setRole] = (true) // 1 for user, 0 for AI
 }
 
 export default App;
