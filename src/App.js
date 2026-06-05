@@ -2,7 +2,6 @@ import './App.css';
 import { use, useState } from 'react';
 import ChatInput from './components/ChatInput';
 import ChatWindow from './components/ChatWindow';
-import ConversationItem from './components/ConversationItem';
 import ConversationList from './components/ConversationList';
 import MessageBubble from './components/MessageBubble';
 
@@ -12,7 +11,7 @@ function App() {
   const [conversations, setConversations] = useState([])
   const [untitledCount, setUntitledCount] = useState(0)
 
-  function NewConversation() {
+  function newConversation() {
     const newConversation = {
       id: Date.now(),
       name: untitledCount === 0 ? "Untitled" : `Untitled ${untitledCount}`,

@@ -1,9 +1,9 @@
-export default function ConversationList({conversations, selected, setSelected, NewConversation}) {
+export default function ConversationList({conversations, selected, setSelected, newConversation}) {
     return (
         <div className="conversation-list-panel">
             <button 
                 className="new-conversation-button" 
-                onClick={() => NewConversation}
+                onClick={() => newConversation}
             ><img src="new-chat-icon"/></button>
             <ul className="conversation-list">
                 {conversations.map(conv => (
