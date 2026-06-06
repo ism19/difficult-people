@@ -1,7 +1,7 @@
 import ChatInput from "./ChatInput";
 import MessageBubble from "./MessageBubble";
 
-export default function ChatWindow({selected, conversations, messageIn, setMessageIn, onSend}) {
+export default function ChatWindow({selected, messageIn, setMessageIn, onSend}) {
     return (
         <div className="chat-window">
             <div className="chat-scroll-window">

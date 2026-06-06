@@ -8,10 +8,15 @@ import OpenAI from 'openai';
 
 function App() {
   const [messageIn, setMessageIn] = useState("")
-  const [selected, setSelected] = useState(null)
+  const defaultConversation = {
+    id: Date.now(),
+    name: "Untitled",
+    messages: []
+  }
+  const [selected, setSelected] = useState(defaultConversation)
   const [conversations, setConversations] = useState([])
   const [untitledCount, setUntitledCount] = useState(0)
-  const apikey = process.env.REACT_APP_OPENAI_KEY
+  const apikey = process.env.REACT_APP_OPENAI_API_KEY
 
   function newConversation() {
     const newConversation = {
@@ -74,6 +79,26 @@ function App() {
     setMessageIn("")
   }
 
+  return (
+    <div className="app-body">
+      <div className="side-panel">
+        <ConversationList
+          conversations={conversations}
+          selected={selected}
+          setSelected={setSelected}
+          newConversation={newConversation}
+        />
+      </div>
+      <div className="main-window">
+        <ChatWindow
+          selected={selected}
+          messageIn={messageIn}
+          setMessageIn={setMessageIn}
+          onSend={onSend}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default App;
