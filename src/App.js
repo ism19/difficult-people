@@ -4,12 +4,14 @@ import ChatInput from './components/ChatInput';
 import ChatWindow from './components/ChatWindow';
 import ConversationList from './components/ConversationList';
 import MessageBubble from './components/MessageBubble';
+import OpenAI from 'openai';
 
 function App() {
   const [messageIn, setMessageIn] = useState("")
   const [selected, setSelected] = useState(null)
   const [conversations, setConversations] = useState([])
   const [untitledCount, setUntitledCount] = useState(0)
+  const apikey = process.env.REACT_APP_OPENAI_KEY
 
   function newConversation() {
     const newConversation = {
@@ -22,20 +24,56 @@ function App() {
     setSelected(newConversation)
   }
 
-  function onSend() {
+  async function onSend() {
     if(messageIn.trim().length === 0) return
+
+    const updatedMessages = [...selected.messages, {role: "user", content: messageIn}]
 
     const updatedConversations = conversations.map(conversation => {
       if(conversation.id === selected.id) {
-        return {...conversation, messages: [...conversation.messages, messageIn]}
+        return {...conversation, messages: updatedMessages}
       }
       return conversation
     })
 
     setConversations(updatedConversations)
-    setSelected({...selected, messages: [...selected.messages, {role: "user", content: messageIn}]})
+    setSelected({...selected, messages: updatedMessages})
+    
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${apikey}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: "You are helping people deal with difficult people in difficult situations. Give practical and empathetic advice without sugarcoatin and be direct."
+          },
+          ...updatedMessages
+        ]
+      })
+    })
+
+    const data = await response.json()
+    const systemResponse = data.choices[0].message
+
+    const finalMessages = [...updatedMessages, systemResponse]
+
+    const finalConversations = conversations.map(conversation => {
+      if(conversation.id === selected.id) {
+        return {...conversation, messages: finalMessages}
+      }
+      return conversation
+    })
+
+    setConversations(finalConversations)
+    setSelected({...selected, messages: finalMessages})
     setMessageIn("")
   }
+
 }
 
 export default App;
