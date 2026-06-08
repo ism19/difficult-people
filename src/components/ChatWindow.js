@@ -11,22 +11,27 @@ export default function ChatWindow({selected, messageIn, setMessageIn, onSend}) 
     }, [selected.messages])
     
     return (
-        <div className="chat-window">
-            <div className="chat-scroll-window">
-                {selected.messages.map((message, index) => (
-                    <MessageBubble 
-                        role={message.role}
-                        content={message.content}
-                        key={index}
-                    />
-                ))}
-                <div ref={bottomRef}/>
+        <div className="main-window">
+            <div className="title-bar">
+                <p className="title">{selected.name}</p>
             </div>
-            <ChatInput 
-                messageIn={messageIn}
-                setMessageIn={setMessageIn}
-                onSend={onSend}
-            />
-        </div>   
+            <div className="chat-window">
+                <div className="chat-scroll-window">
+                    {selected.messages.map((message, index) => (
+                        <MessageBubble 
+                            role={message.role}
+                            content={message.content}
+                            key={index}
+                        />
+                    ))}
+                    <div ref={bottomRef}/>
+                </div>
+                <ChatInput 
+                    messageIn={messageIn}
+                    setMessageIn={setMessageIn}
+                    onSend={onSend}
+                />
+            </div>
+        </div>
     )
 }
