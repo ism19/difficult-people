@@ -1,3 +1,5 @@
+import '../style/ConversationList.css'
+
 export default function ConversationList({conversations, selected, setSelected, newConversation}) {
     return (
         <div className="conversation-list-panel">

@@ -1,0 +1,15 @@
+.conversation-list-panel {
+    position: relative;
+    width: 150px;
+    background-color: #281F36;
+    min-height: 100vh;
+
+}
+
+.new-conversation-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+}
