@@ -1,3 +1,5 @@
+import '../style/ChatInput.css'
+
 export default function ChatInput({messageIn, setMessageIn, onSend}) {
     return (
         <div className="input-box">

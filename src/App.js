@@ -1,4 +1,4 @@
-import './App.css';
+import './style/App.css';
 import { use, useState } from 'react';
 import ChatInput from './components/ChatInput';
 import ChatWindow from './components/ChatWindow';
@@ -33,6 +33,8 @@ function App() {
     if(messageIn.trim().length === 0) return
 
     const updatedMessages = [...selected.messages, {role: "user", content: messageIn}]
+
+    setMessageIn("")
 
     const updatedConversations = conversations.map(conversation => {
       if(conversation.id === selected.id) {
@@ -76,7 +78,6 @@ function App() {
 
     setConversations(finalConversations)
     setSelected({...selected, messages: finalMessages})
-    setMessageIn("")
   }
 
   return (

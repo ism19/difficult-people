@@ -1,0 +1,18 @@
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 590px;
+    gap: 50px;
+}
+
+.chat-scroll-window {
+    width: 615px;
+    height: 685px;
+    background-color: #281F36;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
