@@ -14,8 +14,8 @@ function App() {
     messages: []
   }
   const [selected, setSelected] = useState(defaultConversation)
-  const [conversations, setConversations] = useState([])
-  const [untitledCount, setUntitledCount] = useState(0)
+  const [conversations, setConversations] = useState([defaultConversation])
+  const [untitledCount, setUntitledCount] = useState(1)
   const apikey = process.env.REACT_APP_OPENAI_API_KEY
 
   function newConversation() {

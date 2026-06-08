@@ -1,15 +1,54 @@
 .conversation-list-panel {
-    position: relative;
-    width: 150px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
     background-color: #281F36;
     min-height: 100vh;
-
+    border-right: 0.5px solid #443758;
 }
 
 .new-conversation-button {
-    position: absolute;
-    right: 0;
-    top: 0;
+    margin: 10px 10px 0 0;
+    align-self: flex-end;
     background: none;
     border: none;
+}
+
+.new-conversation-button img {
+    width: 25px;
+}
+
+.conversation-list {
+    list-style: none;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.list-item {
+    padding: 10px 15px;
+    color: #EACDC2;
+    width: 95%;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.list-item:hover {
+    cursor: pointer;
+    background-color: #443758;
+    border-radius: 10px;
+    transition: background 0.25s;
+}
+
+.selected-list-item {
+    padding: 10px 15px;
+    background-color: #443758;
+    width: 95%;
+    border-radius: 10px;
+    color: #EACDC2;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.25s;
 }

@@ -8,6 +8,7 @@
     padding-right: 20px;
     background-color: #281F36;
     border-radius: 20px;
+    border: 0.5px solid #443758;
 }
 
 .chat-input {
