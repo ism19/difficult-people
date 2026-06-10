@@ -1,7 +1,8 @@
 import '../style/ConversationList.css'
 import { useState } from 'react'
+import RenameConversation from './RenameConversation'
 
-export default function ConversationList({conversations, selected, setSelected, newConversation, toggleEditMenu, setToggleEditMenu, editConversation, deleteConversation}) {
+export default function ConversationList({conversations, selected, setSelected, newConversation, toggleEditMenu, setToggleEditMenu, deleteConversation, rename, setRename, conversationToRename, setConversationToRename, saveConversation}) {
     return (
         <div className="conversation-list-panel">
             <button 
@@ -28,9 +29,10 @@ export default function ConversationList({conversations, selected, setSelected, 
                                         className="rename-button"
                                         onClick={e => {
                                             e.stopPropagation()
-                                            editConversation()
-                                        }}
-                                    >Rename</button>
+                                            setToggleEditMenu(null)
+                                            setConversationToRename(conv)
+                                            setRename(conv.name)
+                                        }}>Rename</button>
                                     <button 
                                         className="delete-button"
                                         onClick={e => {
@@ -44,6 +46,14 @@ export default function ConversationList({conversations, selected, setSelected, 
                     </li>
                 ))}
             </ul>
+            {conversationToRename && (
+                <RenameConversation
+                    rename={rename}
+                    setRename={setRename}
+                    setConversationToRename={setConversationToRename}
+                    saveConversation={saveConversation}
+                />
+            )}
         </div>
     )
 }

@@ -1,10 +1,10 @@
 import './style/App.css';
 import { use, useState } from 'react';
-import ChatInput from './components/ChatInput';
 import ChatWindow from './components/ChatWindow';
 import ConversationList from './components/ConversationList';
-import MessageBubble from './components/MessageBubble';
+import RenameConversation from './components/RenameConversation';
 import OpenAI from 'openai';
+import { useEffect } from 'react';
 
 function App() {
   const [messageIn, setMessageIn] = useState("")
@@ -17,6 +17,8 @@ function App() {
   const [conversations, setConversations] = useState([defaultConversation])
   const [untitledCount, setUntitledCount] = useState(1)
   const [toggleEditMenu, setToggleEditMenu] = useState(null)
+  const [rename, setRename] = useState("")
+  const [conversationToRename, setConversationToRename] = useState(null)
   const apikey = process.env.REACT_APP_OPENAI_API_KEY
 
   function newConversation() {
@@ -100,22 +102,46 @@ function App() {
     setToggleEditMenu(null)
   }
 
-  function editConversation() {
-    
+  function saveConversation() {
+    const updatedConversations = conversations.map(conversation => {
+      if(conversation.id === toggleEditMenu?.id) {
+        return {...conversation, name: rename}
+      }
+      return conversation
+    })
+
+    setConversations(updatedConversations)
+    if(toggleEditMenu?.id === selected.id) setSelected({...selected, name: rename})
+    setToggleEditMenu(null)
+    setConversationToRename(null)
+    setRename("")
   }
 
   return (
     <div className="app-body">
+      {conversationToRename && (
+        <RenameConversation
+            rename={rename}
+            setRename={setRename}
+            setToggleEditMenu={setToggleEditMenu}
+            setConversationToRename={setConversationToRename}
+            saveConversation={saveConversation}
+        />
+      )}
       <div className="side-panel">
         <ConversationList
           conversations={conversations}
           selected={selected}
           setSelected={setSelected}
           newConversation={newConversation}
-          editConversation={editConversation}
           deleteConversation={deleteConversation}
           toggleEditMenu={toggleEditMenu}
           setToggleEditMenu={setToggleEditMenu}
+          conversationToRename={conversationToRename}
+          setConversationToRename={setConversationToRename}
+          rename={rename}
+          setRename={setRename}
+          saveConversation={saveConversation}
         />
       </div>
       <div className="main-window">

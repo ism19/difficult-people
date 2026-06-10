@@ -1,0 +1,82 @@
+.rename-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #443758;
+    border-radius: 12px;
+    z-index: 100;
+    gap: 12px;
+    min-width: 325px;
+    border: 0.5px solid #57486c;
+}
+
+.rename-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    z-index: 99;  
+}
+
+.rename-conversation {
+    font-size: 20px;
+    font-weight: 600;
+    color: #EACDC2;
+}
+
+.rename-input {
+    border: #57486c;
+    background-color: #69597f;
+    padding: 10px 10px;
+    color: #EACDC2;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px
+}
+
+.rename-input:focus {
+    outline: none;
+}
+
+.save-and-cancel-buttons {
+    display: flex;
+    gap: 8px;
+    align-self: flex-end;
+}
+
+.cancel-rename-button {
+    border: none;
+    padding: 8px 10px;
+    background-color: #69597f;
+    color: #EACDC2;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.cancel-rename-button:hover {
+    cursor: pointer;
+    background-color: #706087;
+    transition: background 0.15s;
+}
+
+.save-rename-button {
+    border: none;
+    padding: 8px 10px;
+    background-color: #B75D69;
+    color: #EACDC2;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.save-rename-button:hover {
+    cursor: pointer;
+    background-color: #c16672;
+    transition: background 0.15s;
+}
