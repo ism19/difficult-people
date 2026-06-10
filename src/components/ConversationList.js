@@ -1,9 +1,7 @@
 import '../style/ConversationList.css'
 import { useState } from 'react'
 
-export default function ConversationList({conversations, selected, setSelected, newConversation}) {
-    const [toggleEditMenu, setToggleEditMenu] = useState(null)
-
+export default function ConversationList({conversations, selected, setSelected, newConversation, toggleEditMenu, setToggleEditMenu, editConversation, deleteConversation}) {
     return (
         <div className="conversation-list-panel">
             <button 
@@ -27,10 +25,18 @@ export default function ConversationList({conversations, selected, setSelected, 
                             {toggleEditMenu?.id === conv.id && (
                                 <div className="edit-menu-options">
                                     <button 
-                                        className="edit-button"
-                                    >Edit</button>
+                                        className="rename-button"
+                                        onClick={e => {
+                                            e.stopPropagation()
+                                            editConversation()
+                                        }}
+                                    >Rename</button>
                                     <button 
                                         className="delete-button"
+                                        onClick={e => {
+                                            e.stopPropagation()
+                                            deleteConversation()
+                                        }}
                                     >Delete</button>
                                 </div>
                             )}

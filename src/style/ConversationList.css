@@ -93,7 +93,7 @@
     z-index: 10; 
 }
 
-.edit-button {
+.rename-button {
     padding: 10px 22px;
     background-color: #514267;
     color: #EACDC2;
@@ -105,7 +105,7 @@
     border-bottom: 0.3px solid #443758;
 }
 
-.edit-button:hover {
+.rename-button:hover {
     cursor: pointer;
     background-color: #443758;
     transition: background 0.25s;

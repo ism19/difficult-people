@@ -16,6 +16,7 @@ function App() {
   const [selected, setSelected] = useState(defaultConversation)
   const [conversations, setConversations] = useState([defaultConversation])
   const [untitledCount, setUntitledCount] = useState(1)
+  const [toggleEditMenu, setToggleEditMenu] = useState(null)
   const apikey = process.env.REACT_APP_OPENAI_API_KEY
 
   function newConversation() {
@@ -80,6 +81,29 @@ function App() {
     setSelected({...selected, messages: finalMessages})
   }
 
+  function deleteConversation() {
+    const updatedConversations = conversations.filter(conversation => conversation.id !== toggleEditMenu.id)
+    
+    if(selected?.id === toggleEditMenu.id) {
+      const newConversation = {
+        id: Date.now(),
+        name: untitledCount === 0 ? "Untitled" : `Untitled ${untitledCount}`,
+        messages: []
+      }
+      setUntitledCount(untitledCount + 1)
+      setConversations([...updatedConversations, newConversation])
+      setSelected(newConversation)
+    } else {
+      setConversations(updatedConversations)
+    }
+
+    setToggleEditMenu(null)
+  }
+
+  function editConversation() {
+    
+  }
+
   return (
     <div className="app-body">
       <div className="side-panel">
@@ -88,6 +112,10 @@ function App() {
           selected={selected}
           setSelected={setSelected}
           newConversation={newConversation}
+          editConversation={editConversation}
+          deleteConversation={deleteConversation}
+          toggleEditMenu={toggleEditMenu}
+          setToggleEditMenu={setToggleEditMenu}
         />
       </div>
       <div className="main-window">
