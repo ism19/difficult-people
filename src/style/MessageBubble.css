@@ -1,3 +1,8 @@
+.system-message-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
 .system-message {
     padding: 10px 20px;
     width: fit-content;
@@ -14,5 +19,22 @@
     margin-right: 20px;
     border-radius: 15px;
     color: #EACDC2;
+}
 
+.copy-button {
+    width: fit-content;
+    background: none;
+    border: none;
+    padding: 4px;
+    margin: 2px 16px;
+}
+
+.copy-button:hover {
+    background-color: #352a46;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.copy-button img {
+    width: 18px;
 }
