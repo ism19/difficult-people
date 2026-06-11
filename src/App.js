@@ -2,7 +2,6 @@ import './style/App.css';
 import { use, useState } from 'react';
 import ChatWindow from './components/ChatWindow';
 import ConversationList from './components/ConversationList';
-import RenameConversation from './components/RenameConversation';
 import OpenAI from 'openai';
 import { useEffect } from 'react';
 
@@ -14,12 +13,19 @@ function App() {
     messages: []
   }
   const [selected, setSelected] = useState(defaultConversation)
-  const [conversations, setConversations] = useState([defaultConversation])
+  const [conversations, setConversations] = useState(() => {
+    const saved = localStorage.getItem("conversations")
+    return saved ? JSON.parse(saved) : [defaultConversation]
+  })
   const [untitledCount, setUntitledCount] = useState(1)
   const [toggleEditMenu, setToggleEditMenu] = useState(null)
   const [rename, setRename] = useState("")
   const [conversationToRename, setConversationToRename] = useState(null)
   const apikey = process.env.REACT_APP_OPENAI_API_KEY
+
+  useEffect(() => {
+    localStorage.setItem("conversations", JSON.stringify(conversations))
+  }, [conversations])
 
   function newConversation() {
     const newConversation = {
@@ -119,15 +125,6 @@ function App() {
 
   return (
     <div className="app-body">
-      {conversationToRename && (
-        <RenameConversation
-            rename={rename}
-            setRename={setRename}
-            setToggleEditMenu={setToggleEditMenu}
-            setConversationToRename={setConversationToRename}
-            saveConversation={saveConversation}
-        />
-      )}
       <div className="side-panel">
         <ConversationList
           conversations={conversations}
