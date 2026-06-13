@@ -17,6 +17,8 @@ export default function ChatWindow({selected, messageIn, setMessageIn, onSend}) 
             </div>
             <div className="chat-window">
                 <div className="chat-scroll-window">
+                    <p className="default-message">Hello! How can I help you?</p>
+                    <img className="leaf" src="leaf.png"/>
                     {selected.messages.map((message, index) => (
                         <MessageBubble 
                             role={message.role}

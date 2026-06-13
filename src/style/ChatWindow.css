@@ -17,6 +17,7 @@
     margin: 0px 0 0 18px;
     align-self: flex-start;
     font-size: 18px;
+    text-shadow: 0 0 0.5px #ffe7de;
     font-weight: 400;
 }
 
@@ -24,13 +25,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 590px;
+    width: 675px;
     gap: 50px;
 }
 
 .chat-scroll-window {
     width: 100%;
-    height: 668px;
+    height: 650px;
     background-color: #281F36;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -40,4 +41,18 @@
     gap: 10px;
     border: 0.5px solid #443758;
     border-top: none;
+}
+
+.default-message {
+    margin: 15px 20px;
+    margin-bottom: 5px;
+    color: #EACDC2;
+    text-shadow: 0 0 0.5px #EACDC2;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.leaf {
+    width: 35px;
+    margin: 0px 20px;
 }

@@ -1,11 +1,13 @@
 .input-box {
     width: 100%;
+    height: 100px;
     display: flex;
+    justify-content: space-between;
     gap: 20px;
     padding-top: 20px;
     padding-bottom: 23px;
     padding-left: 23px;
-    padding-right: 20px;
+    padding-right: 23px;
     background-color: #281F36;
     border-radius: 20px;
     border: 0.5px solid #443758;
@@ -15,7 +17,9 @@
     width: 550px;
     border: none;
     background: none;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 0 0.3px #EACDC2;
     color: #EACDC2;
 }
 
